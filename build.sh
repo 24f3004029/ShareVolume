@@ -1,6 +1,7 @@
 #!/bin/bash
-rm -rf build
-mkdir build
-FLASK_APP=app.py python3 -m flask_frozen freeze
-cp -r static build/static
-echo "Static site generated in build/"
+python3 -m flask_frozen freeze
+if [ ! -d "build" ]; then
+    echo "ERROR: Frozen-Flask did not generate build/ folder"
+    exit 1
+fi
+echo "Build generated successfully!"
